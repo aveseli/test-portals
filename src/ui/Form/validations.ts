@@ -15,7 +15,7 @@ export function minLength(minLength: number): ValidatorFn<string | number> {
 
         if (typeof value === "number") {
             if (value < minLength)
-                errors.push("Value is smaller than ", minLength.toString());
+                errors.push("Value is smaller than " + minLength.toString());
         }
 
         return errors;
@@ -37,7 +37,7 @@ export function maxLength(maxLength: number): ValidatorFn<string | number> {
 
         if (typeof value === "number") {
             if (value > maxLength)
-                errors.push("Value is bigger than ", maxLength.toString());
+                errors.push("Value is bigger than " + maxLength.toString());
         }
 
         return errors;
