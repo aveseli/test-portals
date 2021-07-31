@@ -1,10 +1,9 @@
 import { TextField } from "@material-ui/core";
 import { InputTypeProps } from "../InputTypeProps";
 import useInputValidation from "../useInputValidation";
-import { MaxLength } from "../Validations/MaxLength";
-import { MinLength } from "../Validations/MinLength";
+import { maxLength, minLength } from "../validations";
 
-const validations = [new MinLength(1000), new MaxLength(9999)];
+const validations = [minLength(1000), maxLength(9999)];
 
 function Zip({ initialValue = undefined }: InputTypeProps<number>) {
     const { value, valueChanged, validate, error, helperText } =

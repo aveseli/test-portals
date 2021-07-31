@@ -1,10 +1,9 @@
 import { TextField } from "@material-ui/core";
 import { InputTypeProps } from "../InputTypeProps";
 import useInputValidation from "../useInputValidation";
-import { MaxLength } from "../Validations/MaxLength";
-import { MinLength } from "../Validations/MinLength";
+import { maxLength, minLength } from "../validations";
 
-const validations = [new MinLength(2), new MaxLength(20)];
+const validations = [minLength(2), maxLength(20)];
 
 function FirstNameInput({ initialValue = "" }: InputTypeProps<string>) {
     const { value, valueChanged, validate, error, helperText } =
@@ -14,7 +13,7 @@ function FirstNameInput({ initialValue = "" }: InputTypeProps<string>) {
         <TextField
             id="standard-basic"
             label="Vorname"
-            onChange={valueChanged}
+            onChange={(e) => valueChanged(e.target.value)}
             onBlur={validate}
             value={value}
             error={error}

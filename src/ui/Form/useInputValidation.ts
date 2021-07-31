@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ValidationType } from "./Validations/ValidationType";
+import { ValidatorFn } from "./validations";
 
 type ReturnType<T> = {
     value?: T;
@@ -11,7 +11,7 @@ type ReturnType<T> = {
 
 function useInputValidation<T>(
     defaultValue?: T,
-    validations?: ValidationType<T>[]
+    validations?: ValidatorFn<T>[],
 ): ReturnType<T> {
     const [value, setValue] = useState(defaultValue);
     const [isTouched, setTouched] = useState(false);
@@ -19,8 +19,8 @@ function useInputValidation<T>(
 
     const validate = () => {
         if (validations) {
-            const newErrors = validations.flatMap((validation) => {
-                return validation.validate(value);
+            const newErrors = validations.flatMap((validate) => {
+                return validate(value);
             });
 
             setErrors(newErrors);
@@ -31,7 +31,7 @@ function useInputValidation<T>(
 
     const valueChanged = (newValue: T) => {
         setValue(newValue);
-        if (!newValue || newValue === defaultValue) {
+        if (!newValue || newValue === null || newValue === defaultValue) {
             setErrors([]);
             setTouched(false);
         } else {
