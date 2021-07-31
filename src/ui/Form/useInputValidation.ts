@@ -11,15 +11,15 @@ type ReturnType<T> = {
 
 function useInputValidation<T>(
     defaultValue?: T,
-    validations?: ValidatorFn<T>[],
+    validators?: ValidatorFn<T>[],
 ): ReturnType<T> {
     const [value, setValue] = useState(defaultValue);
     const [isTouched, setTouched] = useState(false);
     const [errors, setErrors] = useState([] as string[]);
 
     const validate = () => {
-        if (validations && isTouched) {
-            const newErrors = validations.flatMap((validate) => {
+        if (validators && isTouched) {
+            const newErrors = validators.flatMap((validate) => {
                 return validate(value);
             });
 
@@ -31,7 +31,7 @@ function useInputValidation<T>(
 
     const valueChanged = (newValue: T) => {
         setValue(newValue);
-        if (!newValue || newValue === null || newValue === defaultValue) {
+        if (newValue === defaultValue) {
             setErrors([]);
             setTouched(false);
         } else {
