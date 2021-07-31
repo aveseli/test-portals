@@ -4,21 +4,16 @@ import useInputValidation from "../useInputValidation";
 import { MaxLength } from "../Validations/MaxLength";
 import { MinLength } from "../Validations/MinLength";
 
-const validations = [new MinLength(3), new MaxLength(20)];
+const validations = [new MinLength(2), new MaxLength(20)];
 
-function NameInput({ initialValue = "" }: InputTypeProps<string>) {
-    const {
-        value,
-        valueChanged,
-        validate,
-        error,
-        helperText,
-    } = useInputValidation(initialValue, validations);
+function FirstNameInput({ initialValue = "" }: InputTypeProps<string>) {
+    const { value, valueChanged, validate, error, helperText } =
+        useInputValidation(initialValue, validations);
 
     return (
         <TextField
             id="standard-basic"
-            label="Name"
+            label="Vorname"
             onChange={valueChanged}
             onBlur={validate}
             value={value}
@@ -28,4 +23,4 @@ function NameInput({ initialValue = "" }: InputTypeProps<string>) {
     );
 }
 
-export default NameInput;
+export default FirstNameInput;

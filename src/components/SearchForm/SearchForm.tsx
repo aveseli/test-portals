@@ -1,7 +1,9 @@
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import FirstNameInput from "../../ui/Form/FirstnameInput/FirstName";
 import NameInput from "../../ui/Form/NameInput/Name";
+import Zip from "../../ui/Form/ZipPlaceInput/Zip";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,9 +19,9 @@ function SearchForm() {
     return (
         <form className={classes.root} noValidate autoComplete="off">
             <NameInput />
-            <TextField id="standard-basic" label="Voname" />
+            <FirstNameInput />
             <TextField id="standard-basic" label="Geburtstag" />
-            <TextField id="standard-basic" label="PLZ" />
+            <Zip />
             <TextField id="standard-basic" label="Ort" />
             <Button variant="contained" color="secondary">
                 Reset

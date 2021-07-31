@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 
-export type InputTypeProps = {
-    onChange?: (e: ChangeEvent) => void
-}
+export type InputTypeProps<T> = {
+    initialValue?: T;
+    onChange?: (e: ChangeEvent) => void;
+};
