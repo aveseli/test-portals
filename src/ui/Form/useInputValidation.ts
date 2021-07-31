@@ -18,7 +18,7 @@ function useInputValidation<T>(
     const [errors, setErrors] = useState([] as string[]);
 
     const validate = () => {
-        if (validations) {
+        if (validations && isTouched) {
             const newErrors = validations.flatMap((validate) => {
                 return validate(value);
             });
@@ -41,7 +41,7 @@ function useInputValidation<T>(
 
     const errorState =
         Object.keys(errors).length > 0 && isTouched ? true : undefined;
-    const [helperText] = Object.values(errors);
+    const helperText = errorState ? Object.values(errors)[0] : undefined;
 
     return {
         value: value,
